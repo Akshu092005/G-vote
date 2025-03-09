@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chairman Voting - GVote</title>
+    <title>Vice Chairman Voting GAS - GVote</title>
     <style>
         body {
             display: flex;
@@ -91,38 +91,51 @@
     <div class="candidate-container">
         <div class="candidate">
             <img src="CMcandidate1-gvote.jpg" alt="Candidate 1">
-            <p><strong>lily Doe</strong></p>
+            <p><strong>Tylor</strong></p>
             <p>Department: Computer Science</p>
-            <button class="vote-button" onclick="vote('lily Doe')">Vote</button>
+            <button class="vote-button" onclick="vote('Tylor', 'vicechairman')">Vote</button>
         </div>
         <div class="candidate">
             <img src="CMcandidate2-gvote.jpg" alt="Candidate 2">
-            <p><strong>Jane Smith</strong></p>
+            <p><strong>Oliviya</strong></p>
             <p>Department: Business Administration</p>
-            <button class="vote-button" onclick="vote('Jane Smith')">Vote</button>
+            <button class="vote-button" onclick="vote('Oliviya', 'vicechairman')">Vote</button>
         </div>
         <div class="candidate">
             <img src="CMcandidate3-gvote.jpg" alt="Candidate 3">
-            <p><strong>Emily Brown</strong></p>
+            <p><strong>Angel</strong></p>
             <p>Department: Mathematics</p>
-            <button class="vote-button" onclick="vote('Emily Brown')">Vote</button>
+            <button class="vote-button" onclick="vote('Angel', 'vicechairman')">Vote</button>
         </div>
         <div class="candidate">
             <img src="CMcandidate4-gvote.jpg" alt="Candidate 4">
-            <p><strong>Michael Johnson</strong></p>
+            <p><strong>Christopher</strong></p>
             <p>Department: Physics</p>
-            <button class="vote-button" onclick="vote('Michael Johnson')">Vote</button>
+            <button class="vote-button" onclick="vote('Christopher', 'vicechairman')">Vote</button>
         </div>
         <div class="candidate">
             <img src="CMcandidate5-gvote.jpg" alt="Candidate 5">
-            <p><strong>David Wilson</strong></p>
+            <p><strong>Mar</strong></p>
             <p>Department: Chemistry</p>
-            <button class="vote-button" onclick="vote('David Wilson')">Vote</button>
+            <button class="vote-button" onclick="vote('Mark', 'vicechairman')">Vote</button>
         </div>
     </div>
     
     <div class="submit-container">
-        <button class="submit-button" onclick="window.location.href='SFScategory-gvote.html'">Submit</button>
+        <button class="submit-button" onclick="window.location.href='GAScategory-gvote.html'">Submit</button>
     </div>
+
+    <script>
+        function vote(candidateName, position) {
+            fetch("/vote", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ candidate_name: candidateName, position: position })
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))  // Show confirmation message
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
 </body>
 </html>
